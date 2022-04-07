@@ -1,1 +1,1 @@
-# the-odin-project
+This repository contains my solutions to all TOP projects!
