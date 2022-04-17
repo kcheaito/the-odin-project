@@ -14,7 +14,7 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        console.log('Tie!');
+        return('Tie!');
     }
     else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
         return('You won the round!');
@@ -36,33 +36,35 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        let computerSelection = computerPlay();
-        let playerSelection = prompt('Choose between "Rock", "Paper" or "Scissors"');
-        playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
-        result = playRound(playerSelection, computerSelection);
-        console.log(result);
-        if (result === 'You won the round!') {
-            playerScore++;
+let playerScore = 0;
+let computerScore = 0;
+let result;
+const buttons = document.querySelectorAll('button');
+const divplayer = document.querySelector('.player');
+const divcomputer = document.querySelector('.computer');
+const divround = document.querySelector('.round');
+divplayer.textContent = "Your Score: " + playerScore;
+divcomputer.textContent = "Opponent's Score: " + computerScore;
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        if (playerScore < 5 && computerScore < 5) {
+            result = playRound(button.id, computerPlay());
+            divround.textContent = result;
+            if (result === 'You won the round!') {
+                divplayer.textContent = "Your Score: " + ++playerScore;
+            }
+            else if (result === 'You lost the round!') {
+                divcomputer.textContent = "Opponent's Score: " + ++computerScore;
+            }
         }
-        else if (result === 'You lost the round!') {
-            computerScore++;
-        } 
-    }
-    if (playerScore > computerScore) {
-        console.log('You Win!');
-    }
-    else if (playerScore < computerScore) {
-        console.log('You Lose!');
-    }
-    else {
-        console.log('Tie!');
-    }
-}
-
-game();
-
-
+        if (playerScore == 5 || computerScore == 5) {
+            if (playerScore > computerScore) {
+                alert('Game Over! You Win!');
+            }
+            else {
+                alert('Game Over! You Lose!');
+            }
+        }
+    });
+});
