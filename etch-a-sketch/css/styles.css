@@ -1,0 +1,20 @@
+* {
+    background-color: gray;
+}
+
+.rows {
+    background-color: white;
+    width: 25px;
+    height: 25px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+}
