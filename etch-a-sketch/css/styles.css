@@ -1,9 +1,5 @@
-* {
-    background-color: gray;
-}
-
 .rows {
-    background-color: white;
+    background-color: grey;
     width: 25px;
     height: 25px;
 }
@@ -17,4 +13,5 @@
 
 body {
     margin: 0;
+    text-align: center;
 }
